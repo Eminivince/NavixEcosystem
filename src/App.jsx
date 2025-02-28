@@ -53,8 +53,8 @@ const BSC_NETWORK = {
 };
 
 function App() {
-  const [provider, setProvider] = useState(null);
-  const [signer, setSigner] = useState(null);
+  // const [provider, setProvider] = useState(null);
+  // const [signer, setSigner] = useState(null);
   const [address, setAddress] = useState("");
   const [contract, setContract] = useState(null);
   const [usdtContract, setUsdtContract] = useState(null);
@@ -69,7 +69,7 @@ function App() {
   const [usdtBalance, setUsdtBalance] = useState("0"); // in USDT
   const [usdtAllowance, setUsdtAllowance] = useState("0"); // in USDT
   const [investAmount, setInvestAmount] = useState(""); // raw input
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
@@ -106,8 +106,8 @@ function App() {
               method: "wallet_addEthereumChain",
               params: [BSC_NETWORK],
             });
-          } catch (addError) {
-            throw new Error("Failed to add BSC network");
+          } catch (err) {
+            throw new Error("Failed to add BSC network", err);
           }
         } else {
           throw new Error("Failed to switch to BSC network");
@@ -130,8 +130,8 @@ function App() {
         _signer
       );
 
-      setProvider(_provider);
-      setSigner(_signer);
+      // setProvider(_provider);
+      // setSigner(_signer);
       setAddress(_address);
       setContract(_contract);
       setUsdtContract(_usdtContract);
@@ -359,7 +359,7 @@ function App() {
               <Text textAlign="center">Connected: {address}</Text>
               <Text textAlign="center">Token Price: {tokenPrice} USDT</Text>
               <Text textAlign="center">
-                Minimum Purchase: {minPurchase * 5} USDT
+                Minimum Purchase: {minPurchase} USDT
               </Text>
               <Text textAlign="center">
                 Your USDT Balance: {usdtBalance} USDT
@@ -382,7 +382,7 @@ function App() {
                       disabled={isLoading}
                     />
                     <FormHelperText>
-                      Minimum investment: {minPurchase * 5} USDT
+                      Minimum investment: {minPurchase} USDT
                     </FormHelperText>
                   </FormControl>
                   <Button
